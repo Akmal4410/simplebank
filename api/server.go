@@ -5,12 +5,14 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
+// Server serves HTTP requests for our banking service.
 type Server struct {
-	store  *db.Store
+	store  db.Store
 	router *gin.Engine
 }
 
-func NewServer(store *db.Store) *Server {
+// NewServer creates a new HTTP server and set up routing.
+func NewServer(store db.Store) *Server {
 
 	server := &Server{store: store}
 	router := gin.Default()
@@ -24,6 +26,7 @@ func NewServer(store *db.Store) *Server {
 	return server
 }
 
+// Start runs the HTTP server on a specific address.
 func (server *Server) Start(address string) error {
 	return server.router.Run()
 
