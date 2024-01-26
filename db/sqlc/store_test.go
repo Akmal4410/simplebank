@@ -20,7 +20,7 @@ func TestTransactionTx(t *testing.T) {
 	amount := int64(10)
 
 	errors := make(chan error)
-	results := make(chan TransferResult)
+	results := make(chan TransferTxResult)
 
 	for i := 0; i < n; i++ {
 		txName := fmt.Sprintf("tx %d", i+1)
