@@ -16,7 +16,7 @@ func createRandomUser(t *testing.T) User {
 
 	arg := CreateUserParams{
 		UserName:       util.RandomOwner(),
-		FirstName:      util.RandomOwner(),
+		FullName:       util.RandomOwner(),
 		HashedPassword: hashedPasswod,
 		Email:          util.RandomEmail(),
 	}
@@ -26,7 +26,7 @@ func createRandomUser(t *testing.T) User {
 	require.NotEmpty(t, user)
 
 	require.Equal(t, arg.UserName, user.UserName)
-	require.Equal(t, arg.FirstName, user.FirstName)
+	require.Equal(t, arg.FullName, user.FullName)
 	require.Equal(t, arg.HashedPassword, user.HashedPassword)
 	require.Equal(t, arg.Email, user.Email)
 
@@ -48,7 +48,7 @@ func TestGetUser(t *testing.T) {
 	require.NotEmpty(t, getUser)
 
 	require.Equal(t, user.UserName, getUser.UserName)
-	require.Equal(t, user.FirstName, getUser.FirstName)
+	require.Equal(t, user.FullName, getUser.FullName)
 	require.Equal(t, user.HashedPassword, getUser.HashedPassword)
 	require.Equal(t, user.Email, getUser.Email)
 
