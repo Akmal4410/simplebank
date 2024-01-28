@@ -194,3 +194,29 @@ Also have a look at the [FAQ](FAQ.md).
 ---
 
 Looking for alternatives? [https://awesome-go.com/#database](https://awesome-go.com/#database).
+
+
+## Akmal
+For building docker image
+docker build -t  simplebank:latest .
+
+For removing images
+docker rmi "image-id"
+
+To inspect a container
+docker container inspect "container-name"
+
+To see all docker network
+docker network ls
+
+To inspect a network(to see whick all container using this network)
+docker network inspect bridge
+
+To see detailed usage of network
+docker network --help
+
+To create a new network
+docker network create bank-network
+
+To Connect a container to a network
+docker network connect bank-network postgres16
