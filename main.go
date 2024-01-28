@@ -1,7 +1,5 @@
 package main
 
-//github mail changed
-
 import (
 	"database/sql"
 	"log"
