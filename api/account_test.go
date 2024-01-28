@@ -273,17 +273,17 @@ func TestCreateAccount(t *testing.T) {
 	}
 }
 
-func TestListAccounts(t *testing.T) {
+func TestListAccountsAPI(t *testing.T) {
 	user, _ := randomUser(t)
-	n := 5
 
+	n := 5
 	accounts := make([]db.Account, n)
 	for i := 0; i < n; i++ {
 		accounts[i] = randomAccount(user.UserName)
 	}
 
 	type Query struct {
-		pageNumber int
+		PageNumber int
 		pageSize   int
 	}
 
@@ -297,7 +297,7 @@ func TestListAccounts(t *testing.T) {
 		{
 			name: "OK",
 			query: Query{
-				pageNumber: 1,
+				PageNumber: 1,
 				pageSize:   n,
 			},
 			setupAuth: func(t *testing.T, request *http.Request, tokenMaker token.Maker) {
@@ -323,7 +323,7 @@ func TestListAccounts(t *testing.T) {
 		{
 			name: "NoAuthorization",
 			query: Query{
-				pageNumber: 1,
+				PageNumber: 1,
 				pageSize:   n,
 			},
 			setupAuth: func(t *testing.T, request *http.Request, tokenMaker token.Maker) {
@@ -340,7 +340,7 @@ func TestListAccounts(t *testing.T) {
 		{
 			name: "InternalError",
 			query: Query{
-				pageNumber: 1,
+				PageNumber: 1,
 				pageSize:   n,
 			},
 			setupAuth: func(t *testing.T, request *http.Request, tokenMaker token.Maker) {
@@ -357,9 +357,9 @@ func TestListAccounts(t *testing.T) {
 			},
 		},
 		{
-			name: "InvalidpageNumber",
+			name: "InvalidPageNumber",
 			query: Query{
-				pageNumber: -1,
+				PageNumber: -1,
 				pageSize:   n,
 			},
 			setupAuth: func(t *testing.T, request *http.Request, tokenMaker token.Maker) {
@@ -377,7 +377,7 @@ func TestListAccounts(t *testing.T) {
 		{
 			name: "InvalidPageSize",
 			query: Query{
-				pageNumber: 1,
+				PageNumber: 1,
 				pageSize:   100000,
 			},
 			setupAuth: func(t *testing.T, request *http.Request, tokenMaker token.Maker) {
@@ -413,7 +413,7 @@ func TestListAccounts(t *testing.T) {
 
 			// Add query parameters to request URL
 			q := request.URL.Query()
-			q.Add("page_id", fmt.Sprintf("%d", tc.query.pageNumber))
+			q.Add("page_number", fmt.Sprintf("%d", tc.query.PageNumber))
 			q.Add("page_size", fmt.Sprintf("%d", tc.query.pageSize))
 			request.URL.RawQuery = q.Encode()
 
@@ -422,7 +422,6 @@ func TestListAccounts(t *testing.T) {
 			tc.checkResponse(recorder)
 		})
 	}
-
 }
 
 func randomAccount(owner string) db.Account {
