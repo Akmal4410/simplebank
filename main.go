@@ -1,6 +1,6 @@
 package main
 
-//protection added to main
+//protection added to main and made test compulsory
 
 import (
 	"database/sql"
