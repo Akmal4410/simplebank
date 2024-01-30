@@ -1,5 +1,7 @@
 package main
 
+//protection added to main
+
 import (
 	"database/sql"
 	"log"
