@@ -220,3 +220,9 @@ docker network create bank-network
 
 To Connect a container to a network
 docker network connect bank-network postgres16
+
+To run all together with a command 
+docker compose up
+
+To change the execution mode of file 
+chmod +x start.sh
