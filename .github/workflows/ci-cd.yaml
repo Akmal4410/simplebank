@@ -11,16 +11,16 @@ jobs:
 
     permissions:
       id-token: write
-      contents: write #read
+      contents: read
 
     steps:
       - name: Checkout repo
         uses: actions/checkout@v3
 
       - name: Configure AWS credentials
-        uses: aws-actions/configure-aws-credentials@v4
+        uses: aws-actions/configure-aws-credentials@master
         with:
-          role-to-assume: arn:aws:iam::533267139281:role/gh-action-role
+          role-to-assume: arn:aws:iam::533267139281:role/gh-actions-role
           aws-region: ap-south-1
 
       - name: Login to Amazon ECR
